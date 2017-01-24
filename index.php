@@ -10,7 +10,7 @@ $ictsLayout = ''; // leave empty, or use "intranet/", "kulak/", ..
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/png" href="img/favicon.png" />
-  <base href="http://localhost/layout2016/" />
+  <base href="http://localhost/kuleuven-boilerplate/" />
   <title>My app</title>
   <link href="app.css" rel="stylesheet">
 </head>

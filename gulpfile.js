@@ -9,6 +9,7 @@ const download = require("gulp-download");
 const rename = require("gulp-rename");
 const symlink = require('gulp-symlink');
 const sass = require('gulp-sass');
+const replace = require('gulp-replace');
 
 var latestKulStijlUrl = 'https://stijl.kuleuven.be/2016/release/latest';
 var vendorDir = './resources/vendors/';
@@ -47,14 +48,17 @@ layoutsDirs.forEach(function(layoutDir) {
     latestKulStijlUrl + '/includes' + layoutDir + '/flyout.nl.inc',
     latestKulStijlUrl + '/includes' + layoutDir + '/flyout.en.inc'
   ])
+    .pipe(replace('https://stijl.kuleuven.be/2016/', ''))
     .pipe(gulp.dest(fetchedTemplatesDir + layoutDir));
 });
 // copy the images
 download([
   latestKulStijlUrl + '/img/favicon.png',
-  latestKulStijlUrl + '/img/sedes-kuleuven.png'
-])
-  .pipe(gulp.dest("./img"));
+  latestKulStijlUrl + '/img/sedes-kuleuven.png',
+]).pipe(gulp.dest("./img"));
+download([
+  latestKulStijlUrl + '/img/logo.svg'
+]).pipe(gulp.dest("./img/svg"));
 
 // The CSS of KUL sometimes looks into /css/img instead of /img, so make a symlink
 /*gulp.src('./img')
