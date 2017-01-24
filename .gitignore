@@ -1,0 +1,12 @@
+# vendors
+/node_modules
+resources/vendors
+
+# generated with Gulp:
+img/
+resources/kul_fetched
+templates/icts
+app.css
+app.js
+tinymce
+
