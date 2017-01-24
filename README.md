@@ -38,7 +38,12 @@ You might want to split the gulp command into a command to update your CSS/JS, a
 
 # Notes: 
 * This is not useful if you just want to make pages through the CMS of the university.
-* A ready to use version for the Laravel PHP framework can be found on [screenager/kuleuven-laravel-template](https://github.com/screenager/kuleuven-laravel-template).
+* Already to use version for the Laravel PHP framework can be found on [screenager/kuleuven-laravel-template](https://github.com/screenager/kuleuven-laravel-template).
+
+# Stay up-to-date
+* https://admin.kuleuven.be/icts/services/wms/intranet/webdevnieuws
+* https://www.kuleuven.be/stijlgids
+* https://stijl.kuleuven.be/2016/techspecs
 
 # Todos
 This boilerplate was made to support an info session at the university.
