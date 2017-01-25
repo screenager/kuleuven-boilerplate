@@ -18,60 +18,56 @@ var kulFetchedDir = './resources/kul_fetched/';
 var fetchedTemplatesDir = './templates/icts';
 
 
-// First fetch the latest KUL assets from ICTS
+gulp.task('download', function() {
+  download(latestKulStijlUrl + '/css/main.css')
+    .pipe(gulp.dest(kulFetchedDir));
 
-download(latestKulStijlUrl + '/css/main.css')
-  .pipe(gulp.dest(kulFetchedDir));
+  download(latestKulStijlUrl + '/js/all.min.js')
+    .pipe(gulp.dest(kulFetchedDir));
 
-download(latestKulStijlUrl + '/js/all.min.js')
-  .pipe(gulp.dest(kulFetchedDir));
+  /*
+   // Fetch the CSS for the Google fonts
+   // @fixme : disabled, as the URI looks at your user agent, and thereby does not return definitions suitable for all browsers
+   download('https://fonts.googleapis.com/css?family=Material+Icons|Open+Sans:400italic,600italic,700italic,400,700,600|Merriweather:400italic,400,700')
+   .pipe(rename('google-for-kul'))
+   .pipe(gulp.dest(vendorDir + 'kul_latest/fonts'));
+   */
 
-/*
- // Fetch the CSS for the Google fonts
- // @fixme : disabled, as the URI looks at your user agent, and thereby does not return definitions suitable for all browsers
- download('https://fonts.googleapis.com/css?family=Material+Icons|Open+Sans:400italic,600italic,700italic,400,700,600|Merriweather:400italic,400,700')
- .pipe(rename('google-for-kul'))
- .pipe(gulp.dest(vendorDir + 'kul_latest/fonts'));
- */
-
-var layoutsDirs = [
-  '', // default one
-  '/intranet',
-  '/kulak',
-  '/hosted-by',
-  // '/corp',
-  '/landingpage'
-];
-layoutsDirs.forEach(function(layoutDir) {
-  // copy the templates and convert to Blade template files
-  download([
-    latestKulStijlUrl + '/includes' + layoutDir + '/header.nl.inc',
-    latestKulStijlUrl + '/includes' + layoutDir + '/header.en.inc',
-    latestKulStijlUrl + '/includes' + layoutDir + '/footer.nl.inc',
-    latestKulStijlUrl + '/includes' + layoutDir + '/footer.en.inc',
-    latestKulStijlUrl + '/includes' + layoutDir + '/flyout.nl.inc',
-    latestKulStijlUrl + '/includes' + layoutDir + '/flyout.en.inc'
-  ])
-    .pipe(replace('https://stijl.kuleuven.be/2016/', ''))
-    .pipe(gulp.dest(fetchedTemplatesDir + layoutDir));
-});
+  var layoutsDirs = [
+    '', // default one
+    '/intranet',
+    '/kulak',
+    '/hosted-by',
+    // '/corp',
+    '/landingpage'
+  ];
+  layoutsDirs.forEach(function (layoutDir) {
+    // copy the templates and convert to Blade template files
+    download([
+      latestKulStijlUrl + '/includes' + layoutDir + '/header.nl.inc',
+      latestKulStijlUrl + '/includes' + layoutDir + '/header.en.inc',
+      latestKulStijlUrl + '/includes' + layoutDir + '/footer.nl.inc',
+      latestKulStijlUrl + '/includes' + layoutDir + '/footer.en.inc',
+      latestKulStijlUrl + '/includes' + layoutDir + '/flyout.nl.inc',
+      latestKulStijlUrl + '/includes' + layoutDir + '/flyout.en.inc'
+    ])
+      .pipe(replace('https://stijl.kuleuven.be/2016/', ''))
+      .pipe(gulp.dest(fetchedTemplatesDir + layoutDir));
+  });
 // copy the images
-download([
-  latestKulStijlUrl + '/img/favicon.png',
-  latestKulStijlUrl + '/img/sedes-kuleuven.png',
-]).pipe(gulp.dest("./img"));
-download([
-  latestKulStijlUrl + '/img/logo.svg'
-]).pipe(gulp.dest("./img/svg"));
+  download([
+    latestKulStijlUrl + '/img/favicon.png',
+    latestKulStijlUrl + '/img/sedes-kuleuven.png',
+  ]).pipe(gulp.dest("./img"));
+  download([
+    latestKulStijlUrl + '/img/logo.svg'
+  ]).pipe(gulp.dest("./img/svg"));
 
 // The CSS of KUL sometimes looks into /css/img instead of /img, so make a symlink
-/*gulp.src('./img')
-  .pipe(symlink('./css/img', {force: true}));
-*/
-
-
-
-// Now start concatenating stuff
+  /*gulp.src('./img')
+   .pipe(symlink('./css/img', {force: true}));
+   */
+});
 
 gulp.task('scripts', function() {
   gulp.src([
@@ -121,4 +117,4 @@ gulp.task('tinymce_themes', function() {
   gulp.src([vendorDir + 'tinymce/plugins/**']).pipe(gulp.dest('./tinymce/plugins'));
 });
 
-gulp.task('default', ['scripts', 'sass', 'css', 'tinymce_themes']);
+gulp.task('compile', ['scripts', 'sass', 'css', 'tinymce_themes']);

@@ -22,7 +22,8 @@ Run
 ``` bash
 npm install;
 bower install;
-gulp;
+gulp download;
+gulp compile;
 ```
 
 If "npm install" doesn't work, try "sudo npm install".
@@ -30,11 +31,10 @@ If "npm install" doesn't work, try "sudo npm install".
 You can now go extending the published layout to your needs!
 
 # Applying updates
-Running "gulp" again will fetch the latest HTML and CSS of the templates from ICTS. 
-This is intended, as the ICTS template files are still in development. 
-Also, this way the university related menu items in the header and footer of the layout are brought to their latest version in accordance with the other KU Leuven websites.
+Running "gulp download" again will fetch the latest version of template assets from ICTS. 
+This way the university related menu items in the header and footer of the layout are brought to their latest version in accordance with the other KU Leuven websites.
 
-You might want to split the gulp command into a command to update your CSS/JS, and one to fetch the latest ICTS resources, but this is entirely up to you.
+Complete by running "gulp compile" and go test the changes before bringing to production.
 
 # Notes: 
 * This is not useful if you just want to make pages through the CMS of the university.
