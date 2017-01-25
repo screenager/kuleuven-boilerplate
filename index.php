@@ -12,7 +12,8 @@ $ictsLayout = ''; // leave empty, or use "intranet/", "kulak/", ..
   <link rel="icon" type="image/png" href="img/favicon.png" />
   <base href="http://localhost/kuleuven-boilerplate/" />
   <title>My app</title>
-  <link href="app.css" rel="stylesheet">
+  <link href="app.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons|Open+Sans:400italic,600italic,700italic,400,700,600|Merriweather:400italic,400,700" type="text/css">
 </head>
 
 <body>
